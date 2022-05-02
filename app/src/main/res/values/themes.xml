@@ -1,68 +1,62 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.CodeHub" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.CodeHub" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primary_500</item>
         <item name="colorPrimaryVariant">@color/primary_700</item>
         <item name="colorOnPrimary">@color/white</item>
-        <!-- Background -->
-        <item name="android:windowBackground">?android:attr/colorBackground</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/neutral_500</item>
-        <item name="colorSecondaryVariant">@color/neutral_400</item>
+        <item name="colorSecondary">@color/primary_500</item>
+        <item name="colorSecondaryVariant">@color/primary_550</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Neutral color. -->
-        <item name="colorSurface">@color/neutral_400</item>
-        <item name="colorOnPrimarySurface">@color/neutral_500</item>
-        <item name="android:textColorPrimary">@color/neutral_500</item>
-        <item name="android:textColorSecondary">@color/light_500</item>
-        <item name="android:colorBackground">@color/neutral_200</item>
-        <item name="colorPrimarySurface">@color/white</item>
+        <!-- Customize your theme here. -->
+        <item name="android:actionBarStyle">@style/CodeHubActionBar</item>
+        <item name="android:textColor">@color/primary_text</item>
+        <item name="android:textColorSecondary">@color/secondary_text</item>
+        <!--    Background Dasar: Putih - item    -->
+        <item name="android:windowBackground">@color/light_200</item>
+
+        <!--    Background Dasar: Putih - item    -->
+        <item name="background">@color/white</item>
+
+        <!--    Background appbar: biru - item  untuk action bar  -->
+        <item name="backgroundTint">@color/primary_500</item>
+
+        <!--    Background AppBar: putih - item   -->
+        <item name="backgroundColor">@color/white</item>
+
+        <!--    For Selector    -->
+        <item name="itemTextAppearanceActive">@color/white</item>
+        <item name="itemTextAppearanceInactive">@color/light_400</item>
     </style>
 
-    <style name="SplashScreenTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/primary_500</item>
-        <item name="colorPrimaryVariant">@color/primary_700</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <!-- Background -->
-        <item name="android:windowBackground">?android:attr/colorPrimary</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/secondary_200</item>
-        <item name="colorSecondaryVariant">@color/secondary_700</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Neutral color. -->
-        <item name="colorSurface">@color/neutral_400</item>
-        <item name="colorOnPrimarySurface">@color/neutral_500</item>
-        <item name="android:textColorPrimary">@color/neutral_500</item>
-        <item name="android:textColorSecondary">@color/light_500</item>
-        <item name="android:colorBackground">@color/neutral_200</item>
-        <item name="colorPrimarySurface">@color/white</item>
+
+    <!--  STYLING FOR TEXT  -->
+    <style name="TextContent">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
-    <style name="SearchScreenTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/primary_500</item>
-        <item name="colorPrimaryVariant">@color/primary_700</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <!-- Background -->
-        <item name="android:windowBackground">?android:attr/colorBackground</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/neutral_500</item>
-        <item name="colorSecondaryVariant">@color/neutral_400</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Neutral color. -->
-        <item name="colorSurface">@color/neutral_400</item>
-        <item name="colorOnPrimarySurface">@color/neutral_500</item>
-        <item name="android:textColorPrimary">@color/neutral_500</item>
-        <item name="android:textColorSecondary">@color/light_500</item>
-        <item name="android:colorBackground">@color/neutral_200</item>
-        <item name="colorPrimarySurface">@color/white</item>
+
+    <!--  STYLING ACTION BAR  -->
+
+    <style name="Theme.CodeHub.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.CodeHub.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.CodeHub.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="CodeHubActionBar" parent="Widget.MaterialComponents.ActionBar.Primary">
+        <item name="android:background">@color/light_200</item>
+    </style>
+
+    <!--  Splash Screen  -->
+    <style name="Theme.CodeHub.NoActionBar.SplashScreen">
+        <item name="android:windowBackground">@color/light_200</item>
     </style>
 </resources>

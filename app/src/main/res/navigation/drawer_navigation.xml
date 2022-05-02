@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_navigation"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.mikirinkode.codehub.ui.home.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home"/>
+
+    <fragment
+        android:id="@+id/nav_favorite"
+        android:name="com.mikirinkode.codehub.ui.favorite.FavoriteFragment"
+        android:label="@string/favorite"
+        tools:layout="@layout/fragment_favorite"/>
+
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.mikirinkode.codehub.ui.settings.SettingFragment"
+        android:label="@string/setting"
+        tools:layout="@layout/fragment_setting"/>
+
+    <fragment
+        android:id="@+id/nav_about"
+        android:name="com.mikirinkode.codehub.ui.about.AboutFragment"
+        android:label="@string/about"
+        tools:layout="@layout/fragment_about"/>
+
+    <fragment
+        android:id="@+id/nav_other_apps"
+        android:name="com.mikirinkode.codehub.ui.otherapps.OtherAppsFragment"
+        android:label="@string/other_apps"
+        tools:layout="@layout/fragment_other_apps"/>
+</navigation>

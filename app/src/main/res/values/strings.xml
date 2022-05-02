@@ -24,5 +24,16 @@
     <string name="no_data">- no data-</string>
     <string name="search_floating_button">search floating button</string>
     <string name="share_button">share_button</string>
+    <string name="setting">Setting</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home">Home</string>
+    <string name="theme_header">Theme</string>
+    <string name="key_dark_mode">dark_mode</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="about">About</string>
+    <string name="other_apps">Other Apps</string>
+    <string name="about_app_full_desc">This app was a submission for \'Belajar Fundamental Aplikasi Android\' class from Dicoding. This is just a simple app, where i learn to implement MVVM architecture and Retrofit to get data from Network then save it to local database using Room. \n\nThis app still not implement other best practice like Clean Architecture, Repository Architecture, using Dependency Injection and other. Because it will be studied in another class.</string>
+    <string name="profile_tab_title">Profile</string>
 
 </resources>
