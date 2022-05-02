@@ -1,4 +1,4 @@
-package com.mikirinkode.codehub.ui.main.settings
+package com.mikirinkode.codehub.ui.settings
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
