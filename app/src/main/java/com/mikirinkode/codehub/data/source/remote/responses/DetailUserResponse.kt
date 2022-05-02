@@ -1,4 +1,4 @@
-package com.mikirinkode.codehub.data.model
+package com.mikirinkode.codehub.data.source.remote.responses
 
 import com.google.gson.annotations.SerializedName
 
@@ -13,6 +13,9 @@ data class DetailUserResponse (
 
     @SerializedName("following_url")
     val followingUrl: String,
+
+    @SerializedName("html_url")
+    val htmlUrl: String,
 
     val name : String,
     val following: Int,

@@ -3,31 +3,46 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/shape_background_corner_bottom"
+    android:backgroundTint="?attr/background">
+
+    <View
+        android:id="@+id/background_putih"
+        android:layout_width="0dp"
+        android:layout_height="16dp"
+        android:background="@drawable/shape_background_corner_bottom"
+        android:backgroundTint="?attr/background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rv_users" />
+
     <TextView
-        android:visibility="gone"
         android:id="@+id/tv_no_data_follows"
         android:layout_width="match_parent"
-        android:padding="16dp"
-        android:gravity="center"
         android:layout_height="wrap_content"
-        android:textSize="22sp"
-        android:backgroundTint="?attr/colorPrimarySurface"
-        android:text="@string/no_data"
         android:background="@drawable/shape_background_corner_bottom"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="@string/no_data"
+        android:textColor="?android:attr/textColorSecondary"
+        android:textSize="22sp"
+        android:visibility="gone"
+        app:backgroundTint="?attr/background"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="?android:attr/textColorSecondary"/>
+        tools:visibility="visible" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_users"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/item_user_detail" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:listitem="@layout/item_follower" />
 
     <ProgressBar
         android:id="@+id/progress_bar"
@@ -39,17 +54,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:id="@+id/background_putih"
-        android:layout_width="0dp"
-        android:layout_height="16dp"
-        android:background="@drawable/shape_background_corner_bottom"
-        android:backgroundTint="?attr/colorPrimarySurface"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rv_users" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

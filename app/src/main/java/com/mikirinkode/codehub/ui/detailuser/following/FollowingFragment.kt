@@ -1,14 +1,17 @@
 package com.mikirinkode.codehub.ui.detailuser.following
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mikirinkode.codehub.R
+import com.mikirinkode.codehub.data.source.remote.responses.UserResponse
 import com.mikirinkode.codehub.databinding.FragmentFollowBinding
 import com.mikirinkode.codehub.ui.detailuser.DetailUserActivity
 import com.mikirinkode.codehub.ui.detailuser.UserFollowsAdapter
+import com.mikirinkode.codehub.ui.main.UsersAdapter
 
 
 class FollowingFragment : Fragment(R.layout.fragment_follow) {
@@ -26,8 +29,9 @@ class FollowingFragment : Fragment(R.layout.fragment_follow) {
 
 
         val args = arguments
-        username = args?.getString(DetailUserActivity.EXTRA_USERNAME).toString()
-        val numOfFollowing = args?.getInt(DetailUserActivity.EXTRA_FOLLOWING)
+        username = requireActivity().intent.getStringExtra(DetailUserActivity.EXTRA_USERNAME).toString()
+//        val numOfFollowers = args?.getInt(DetailUserActivity.EXTRA_FOLLOWERS)
+        val numOfFollowing = requireActivity().intent.getIntExtra(DetailUserActivity.EXTRA_FOLLOWING, 0)
 
         adapter = UserFollowsAdapter()
 
@@ -45,6 +49,18 @@ class FollowingFragment : Fragment(R.layout.fragment_follow) {
         showLoading(true)
         viewModel = ViewModelProvider(this,ViewModelProvider.NewInstanceFactory())[FollowingViewModel::class.java]
         searchFollowing()
+
+        adapter.setOnItemClickCallback(object: UsersAdapter.OnItemClickCallback{
+            override fun onItemClicked(data: UserResponse) {
+                Intent(requireContext(), DetailUserActivity::class.java).also {
+                    it.putExtra(DetailUserActivity.EXTRA_USERNAME, data.username)
+                    it.putExtra(DetailUserActivity.EXTRA_ID, data.id)
+                    it.putExtra(DetailUserActivity.EXTRA_AVATAR_URL, data.avatarUrl)
+                    it.putExtra(DetailUserActivity.EXTRA_HTML_URL, data.htmlUrl)
+                    startActivity(it)
+                }
+            }
+        })
     }
 
     override fun onDestroyView() {

@@ -5,11 +5,11 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.mikirinkode.codehub.api.RetrofitClient
-import com.mikirinkode.codehub.data.local.FavoriteUser
-import com.mikirinkode.codehub.data.local.FavoriteUserDao
-import com.mikirinkode.codehub.data.local.UserDatabase
-import com.mikirinkode.codehub.data.model.DetailUserResponse
+import com.mikirinkode.codehub.data.source.remote.RetrofitClient
+import com.mikirinkode.codehub.data.model.FavoriteUser
+import com.mikirinkode.codehub.data.source.local.FavoriteUserDao
+import com.mikirinkode.codehub.data.source.local.UserDatabase
+import com.mikirinkode.codehub.data.source.remote.responses.DetailUserResponse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
