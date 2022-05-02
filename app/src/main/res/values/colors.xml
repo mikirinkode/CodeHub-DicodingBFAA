@@ -1,16 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary_500">#2083F8</color>
-    <color name="primary_700">#10427c</color>
-    <color name="secondary_200">#FF03DAC5</color>
-    <color name="secondary_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+
+    <color name="primary_300">#FFB960</color>
+    <color name="primary_400">#EF8619</color>
+    <color name="primary_500">#DD7609</color>
+    <color name="primary_550">#CD6D08</color>
+    <color name="primary_700">#9E5406</color>
+    <color name="secondary_200">#03DAC5</color>
+    <color name="secondary_700">#018786</color>
+
+    <color name="light_200">#F0F6FF</color>
+    <color name="light_300">#D5DEEA</color>
+    <color name="light_400">#BFC8D2</color>
+
+    <color name="neutral_200">#7F91A4</color>
     <color name="neutral_500">#526983</color>
-    <color name="neutral_400">#8393a8</color>
-    <color name="neutral_200">#d5deea</color>
-    <color name="dark_500">#0e1621</color>
-    <color name="dark_400">#17212b</color>
-    <color name="light_200">#bfc8d2</color>
-    <color name="light_500">#7f91a4</color>
+
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+
+    <color name="pure_transparent">#00000000</color>
+    <color name="dark_transparent">#68000000</color>
+    <color name="dark_transparent_500">#681A2532</color>
+
+
+    <color name="primary_text">#17212B</color>
+    <color name="secondary_text">#526983</color>
+
+
+    <!-- Dark Theme -->
+    <color name="dark_200">#243342</color>
+    <color name="dark_300">#1E2B38</color>
+    <color name="dark_500">#17212B</color>
+    <color name="dark_700">#121A22</color>
+    <color name="dark_900">#0D141B</color>
+
+
+    <color name="primary_dark_text">#EBF0F6</color>
+    <color name="secondary_dark_text">#D5DEEA</color>
+
+
+
 </resources>
