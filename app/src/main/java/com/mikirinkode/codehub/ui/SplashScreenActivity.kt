@@ -3,6 +3,9 @@ package com.mikirinkode.codehub.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.preference.PreferenceManager
+import com.mikirinkode.codehub.R
 import com.mikirinkode.codehub.databinding.ActivitySplashScreenBinding
 import com.mikirinkode.codehub.ui.main.MainActivity
 
@@ -15,6 +18,11 @@ class SplashScreenActivity : AppCompatActivity() {
         binding = ActivitySplashScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val preference = PreferenceManager.getDefaultSharedPreferences(applicationContext)
+
+        val isDarkModeActive = preference.getBoolean(resources.getString(R.string.key_dark_mode), false)
+        updateTheme(isDarkModeActive)
+
         binding.apply {
             tvAppName.alpha = 0f
             tvAppName.animate().setDuration(1500).alpha(1f).withEndAction {
@@ -25,4 +33,13 @@ class SplashScreenActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun updateTheme(isDarkModeActive: Boolean) {
+        if (isDarkModeActive) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
+    }
+
 }

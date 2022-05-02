@@ -11,14 +11,15 @@ import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mikirinkode.codehub.R
-import com.mikirinkode.codehub.data.model.User
+import com.mikirinkode.codehub.data.source.remote.responses.UserResponse
 import com.mikirinkode.codehub.databinding.ActivitySearchBinding
 import com.mikirinkode.codehub.ui.detailuser.DetailUserActivity
+import com.mikirinkode.codehub.ui.main.UsersAdapter
 
 class SearchActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySearchBinding
     private lateinit var searchResultViewModel: SearchResultViewModel
-    private lateinit var searchResultAdapter: SearchResultAdapter
+    private lateinit var searchResultAdapter: UsersAdapter
 
     private var etQuery : String = ""
 
@@ -30,7 +31,7 @@ class SearchActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = ""
 
-        searchResultAdapter = SearchResultAdapter()
+        searchResultAdapter = UsersAdapter()
         searchResultViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[SearchResultViewModel::class.java]
         searchResultAdapter.notifyDataSetChanged()
 
@@ -41,66 +42,67 @@ class SearchActivity : AppCompatActivity() {
 
         }
 
-        searchResultViewModel.isLoading.observe(this, {
+        searchResultViewModel.isLoading.observe(this) {
             showLoading(it)
-        })
-        searchResultViewModel.onFailure.observe(this, {
+        }
+        searchResultViewModel.onFailure.observe(this) {
             onFailure(it)
-        })
-        searchResultViewModel.totalUserFound.observe(this, {
+        }
+        searchResultViewModel.totalUserFound.observe(this) {
             totalUserCheck(it)
-        })
+        }
 
-        searchResultAdapter.setOnItemClickCallback(object : SearchResultAdapter.OnItemClickCallback {
-            override fun onItemClicked(data: User) {
+        searchResultAdapter.setOnItemClickCallback(object : UsersAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: UserResponse) {
                 Intent(this@SearchActivity, DetailUserActivity::class.java).also {
-                    it.putExtra(DetailUserActivity.EXTRA_USERNAME, data.login)
+                    it.putExtra(DetailUserActivity.EXTRA_USERNAME, data.username)
                     it.putExtra(DetailUserActivity.EXTRA_ID, data.id)
                     it.putExtra(DetailUserActivity.EXTRA_AVATAR_URL, data.avatarUrl)
                     it.putExtra(DetailUserActivity.EXTRA_HTML_URL, data.htmlUrl)
                     startActivity(it)
                 }
             }
-
         })
 
 
-
-        searchResultViewModel.getSearchUsers().observe(this, {
+        searchResultViewModel.getSearchUsers().observe(this) {
             if (it != null) {
                 searchResultAdapter.setList(it)
             }
-        })
+        }
         refreshApp()
     }
 
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater = menuInflater
-        inflater.inflate(R.menu.main_menu, menu)
+        inflater.inflate(R.menu.search_menu, menu)
 
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
         val searchView = menu.findItem(R.id.search).actionView as SearchView
 
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
-        searchView.queryHint = resources.getString(R.string.search_hint)
-        searchView.setIconifiedByDefault(false)
-        searchView.onActionViewExpanded()
+        searchView.apply {
+            setSearchableInfo(searchManager.getSearchableInfo(componentName))
+            queryHint = resources.getString(R.string.search_hint)
+            setIconifiedByDefault(false)
+            onActionViewExpanded()
 
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
-            override fun onQueryTextSubmit(query: String): Boolean {
-                etQuery = query
-                searchUser()
-                return true
+                override fun onQueryTextSubmit(query: String): Boolean {
+                    etQuery = query
+                    searchUser()
+                    clearFocus()
+                    return true
 
-            }
-            override fun onQueryTextChange(newText: String): Boolean {
-                etQuery = newText
-                searchUser()
-                return false
-            }
-        })
+                }
+                override fun onQueryTextChange(newText: String): Boolean {
+                    etQuery = newText
+                    searchUser()
+                    return false
+                }
+            })
+        }
         return true
     }
 

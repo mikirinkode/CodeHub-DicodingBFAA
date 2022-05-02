@@ -4,15 +4,15 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.mikirinkode.codehub.api.RetrofitClient
-import com.mikirinkode.codehub.data.model.UsersResponse
+import com.mikirinkode.codehub.data.source.remote.RetrofitClient
+import com.mikirinkode.codehub.data.source.remote.responses.UserResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class UsersViewModel : ViewModel(){
 
-    private val listUsers = MutableLiveData<ArrayList<UsersResponse>>()
+    private val listUsers = MutableLiveData<ArrayList<UserResponse>>()
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading : LiveData<Boolean> = _isLoading
@@ -34,10 +34,10 @@ class UsersViewModel : ViewModel(){
 
 
 
-        RetrofitClient.apiInstance.getUsers().enqueue(object : Callback<ArrayList<UsersResponse>> {
+        RetrofitClient.apiInstance.getUsers().enqueue(object : Callback<ArrayList<UserResponse>> {
             override fun onResponse(
-                call: Call<ArrayList<UsersResponse>>,
-                response: Response<ArrayList<UsersResponse>>
+                call: Call<ArrayList<UserResponse>>,
+                response: Response<ArrayList<UserResponse>>
             ) {
                 _isLoading.value = false
                 _onFailure.value = false
@@ -47,7 +47,7 @@ class UsersViewModel : ViewModel(){
 
             }
 
-            override fun onFailure(call: Call<ArrayList<UsersResponse>>, t: Throwable) {
+            override fun onFailure(call: Call<ArrayList<UserResponse>>, t: Throwable) {
                 _isLoading.value = false
                 _onFailure.value = true
                 Log.e(TAG, "onFailure : ${t.message}")
@@ -57,7 +57,7 @@ class UsersViewModel : ViewModel(){
         })
     }
 
-    fun getListUsers(): LiveData<ArrayList<UsersResponse>>{
+    fun getListUsers(): LiveData<ArrayList<UserResponse>>{
         return listUsers
     }
 }

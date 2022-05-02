@@ -1,9 +1,10 @@
-package com.mikirinkode.codehub.data.local
+package com.mikirinkode.codehub.data.source.local
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import com.mikirinkode.codehub.data.model.FavoriteUser
 
 @Dao
 interface FavoriteUserDao {

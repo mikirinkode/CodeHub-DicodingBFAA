@@ -4,23 +4,28 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.mikirinkode.codehub.data.model.UsersResponse
+import com.mikirinkode.codehub.data.source.remote.responses.UserResponse
 import com.mikirinkode.codehub.databinding.ItemUserBinding
 
-class UsersAdapter : RecyclerView.Adapter<UsersAdapter.UserViewHolder>(){
+class UsersAdapter : RecyclerView.Adapter<UsersAdapter.UserViewHolder>() {
 
-    private val list = ArrayList<UsersResponse>()
+    private val list = ArrayList<UserResponse>()
     private var onItemClickCallback: OnItemClickCallback? = null
 
-    fun setList(userResponse: ArrayList<UsersResponse>){
+    fun setList(userResponse: ArrayList<UserResponse>) {
         list.clear()
         list.addAll(userResponse)
         notifyDataSetChanged()
     }
 
-    inner class UserViewHolder(private val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root){
+    fun clearList() {
+        list.clear()
+    }
 
-        fun bind(userResponse: UsersResponse){
+    inner class UserViewHolder(private val binding: ItemUserBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(userResponse: UserResponse) {
             binding.apply {
                 root.setOnClickListener {
                     onItemClickCallback?.onItemClicked(userResponse)
@@ -38,7 +43,7 @@ class UsersAdapter : RecyclerView.Adapter<UsersAdapter.UserViewHolder>(){
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
-        val view = ItemUserBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        val view = ItemUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return UserViewHolder(view)
     }
 
@@ -54,6 +59,6 @@ class UsersAdapter : RecyclerView.Adapter<UsersAdapter.UserViewHolder>(){
     }
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: UsersResponse)
+        fun onItemClicked(data: UserResponse)
     }
 }

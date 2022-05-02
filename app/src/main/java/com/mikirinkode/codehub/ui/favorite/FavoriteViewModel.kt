@@ -3,9 +3,9 @@ package com.mikirinkode.codehub.ui.favorite
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import com.mikirinkode.codehub.data.local.FavoriteUser
-import com.mikirinkode.codehub.data.local.FavoriteUserDao
-import com.mikirinkode.codehub.data.local.UserDatabase
+import com.mikirinkode.codehub.data.model.FavoriteUser
+import com.mikirinkode.codehub.data.source.local.FavoriteUserDao
+import com.mikirinkode.codehub.data.source.local.UserDatabase
 
 class FavoriteViewModel(application: Application): AndroidViewModel(application) {
     private var userDao: FavoriteUserDao?

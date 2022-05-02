@@ -1,9 +1,9 @@
-package com.mikirinkode.codehub.api
+package com.mikirinkode.codehub.data.source.remote
 
-import com.mikirinkode.codehub.data.model.DetailUserResponse
-import com.mikirinkode.codehub.data.model.SearchUserResponse
-import com.mikirinkode.codehub.data.model.User
-import com.mikirinkode.codehub.data.model.UsersResponse
+import com.mikirinkode.codehub.BuildConfig
+import com.mikirinkode.codehub.data.source.remote.responses.DetailUserResponse
+import com.mikirinkode.codehub.data.source.remote.responses.SearchUserResponse
+import com.mikirinkode.codehub.data.source.remote.responses.UserResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Headers
@@ -13,12 +13,12 @@ import retrofit2.http.Query
 interface Api {
 
     companion object{
-        const val GITHUB_TOKEN = "your_github_token"
+        const val GITHUB_TOKEN = BuildConfig.GITHUB_API_KEY
     }
 
     @GET("users")
     @Headers("Authorization: token $GITHUB_TOKEN")
-    fun getUsers(): Call<ArrayList<UsersResponse>>
+    fun getUsers(): Call<ArrayList<UserResponse>>
 
     @GET("search/users")
     @Headers("Authorization: token $GITHUB_TOKEN")
@@ -36,12 +36,12 @@ interface Api {
     @Headers("Authorization: token $GITHUB_TOKEN")
     fun getFollowers(
         @Path("username") username: String
-    ): Call<ArrayList<User>>
+    ): Call<ArrayList<UserResponse>>
 
     @GET("users/{username}/following")
     @Headers("Authorization: token $GITHUB_TOKEN")
     fun getFollowing(
         @Path("username") username: String
-    ): Call<ArrayList<User>>
+    ): Call<ArrayList<UserResponse>>
 
 }

@@ -1,4 +1,4 @@
-package com.mikirinkode.codehub.api
+package com.mikirinkode.codehub.data.source.remote
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

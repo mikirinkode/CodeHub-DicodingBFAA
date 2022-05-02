@@ -1,4 +1,4 @@
-package com.mikirinkode.codehub.data.local
+package com.mikirinkode.codehub.data.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

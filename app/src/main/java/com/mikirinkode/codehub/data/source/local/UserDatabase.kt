@@ -1,9 +1,10 @@
-package com.mikirinkode.codehub.data.local
+package com.mikirinkode.codehub.data.source.local
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.mikirinkode.codehub.data.model.FavoriteUser
 
 @Database(
     entities = [FavoriteUser::class],

@@ -4,16 +4,16 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.mikirinkode.codehub.api.RetrofitClient
-import com.mikirinkode.codehub.data.model.User
-import com.mikirinkode.codehub.data.model.SearchUserResponse
+import com.mikirinkode.codehub.data.source.remote.RetrofitClient
+import com.mikirinkode.codehub.data.source.remote.responses.SearchUserResponse
+import com.mikirinkode.codehub.data.source.remote.responses.UserResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class SearchResultViewModel : ViewModel() {
 
-    private val listUsers = MutableLiveData<ArrayList<User>>()
+    private val listUsers = MutableLiveData<ArrayList<UserResponse>>()
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading : LiveData<Boolean> = _isLoading
@@ -53,7 +53,7 @@ class SearchResultViewModel : ViewModel() {
             })
 
     }
-    fun getSearchUsers(): LiveData<ArrayList<User>>{
+    fun getSearchUsers(): LiveData<ArrayList<UserResponse>>{
         return listUsers
     }
 
