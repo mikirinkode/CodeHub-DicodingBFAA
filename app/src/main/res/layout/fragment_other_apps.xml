@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -17,35 +16,35 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
+            android:contentDescription="@string/kotakmovie_preview"
             android:scaleType="fitCenter"
-            tools:src="@drawable/kotak_movie"
-            android:contentDescription="@string/kotakmovie_preview" />
+            tools:src="@drawable/kotak_movie" />
 
         <ImageView
             android:id="@+id/iv_spod"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
+            android:contentDescription="@string/spod_preview"
             android:scaleType="fitCenter"
-            tools:src="@drawable/spod"
-            android:contentDescription="@string/spod_preview" />
+            tools:src="@drawable/spod" />
 
         <ImageView
             android:id="@+id/iv_text_scanner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
+            android:contentDescription="@string/text_scanner_preview"
             android:scaleType="fitCenter"
-            tools:src="@drawable/text_scanner"
-            android:contentDescription="@string/text_scanner_preview" />
+            tools:src="@drawable/text_scanner" />
 
         <ImageView
             android:id="@+id/iv_financiar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
+            android:contentDescription="@string/financiar_preview"
             android:scaleType="fitCenter"
-            tools:src="@drawable/financiar"
-            android:contentDescription="@string/financiar_preview" />
+            tools:src="@drawable/financiar" />
     </LinearLayout>
 </ScrollView>
