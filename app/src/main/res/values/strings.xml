@@ -35,5 +35,11 @@
     <string name="other_apps">Other Apps</string>
     <string name="about_app_full_desc">This app was a submission for \'Belajar Fundamental Aplikasi Android\' class from Dicoding. This is just a simple app, where i learn to implement MVVM architecture and Retrofit to get data from Network then save it to local database using Room. \n\nThis app still not implement other best practice like Clean Architecture, Repository Architecture, using Dependency Injection and other. Because it will be studied in another class.</string>
     <string name="profile_tab_title">Profile</string>
+    <string name="kotakmovie_preview">KotakMovie Preview</string>
+    <string name="spod_preview">SPOD Preview</string>
+    <string name="text_scanner_preview">Text Scanner Preview</string>
+    <string name="financiar_preview">Financiar Preview</string>
+    <string name="sample_user_name">Muhammad Wafa</string>
+    <string name="sample_user_github_link">github.com/mikirinkode</string>
 
 </resources>

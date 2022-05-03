@@ -7,11 +7,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mikirinkode.codehub.R
-import com.mikirinkode.codehub.data.source.remote.responses.UserResponse
+import com.mikirinkode.codehub.data.model.UserEntity
 import com.mikirinkode.codehub.databinding.FragmentFollowBinding
 import com.mikirinkode.codehub.ui.detailuser.DetailUserActivity
 import com.mikirinkode.codehub.ui.detailuser.UserFollowsAdapter
-import com.mikirinkode.codehub.ui.main.UsersAdapter
+import com.mikirinkode.codehub.utils.DataMapper
 
 
 class FollowingFragment : Fragment(R.layout.fragment_follow) {
@@ -27,10 +27,7 @@ class FollowingFragment : Fragment(R.layout.fragment_follow) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentFollowBinding.bind(view)
 
-
-        val args = arguments
         username = requireActivity().intent.getStringExtra(DetailUserActivity.EXTRA_USERNAME).toString()
-//        val numOfFollowers = args?.getInt(DetailUserActivity.EXTRA_FOLLOWERS)
         val numOfFollowing = requireActivity().intent.getIntExtra(DetailUserActivity.EXTRA_FOLLOWING, 0)
 
         adapter = UserFollowsAdapter()
@@ -50,8 +47,8 @@ class FollowingFragment : Fragment(R.layout.fragment_follow) {
         viewModel = ViewModelProvider(this,ViewModelProvider.NewInstanceFactory())[FollowingViewModel::class.java]
         searchFollowing()
 
-        adapter.setOnItemClickCallback(object: UsersAdapter.OnItemClickCallback{
-            override fun onItemClicked(data: UserResponse) {
+        adapter.setOnItemClickCallback(object: UserFollowsAdapter.OnItemClickCallback{
+            override fun onItemClicked(data: UserEntity) {
                 Intent(requireContext(), DetailUserActivity::class.java).also {
                     it.putExtra(DetailUserActivity.EXTRA_USERNAME, data.username)
                     it.putExtra(DetailUserActivity.EXTRA_ID, data.id)
@@ -63,20 +60,16 @@ class FollowingFragment : Fragment(R.layout.fragment_follow) {
         })
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 
     private fun searchFollowing(){
         viewModel.setListFollowing(username)
-        viewModel.getListFollowing().observe(viewLifecycleOwner, {
+        viewModel.getListFollowing().observe(viewLifecycleOwner) {
             if (it != null) {
-                adapter.setList(it)
+                adapter.setList(DataMapper.mapResponsesToEntities(it))
                 showLoading(false)
 
             }
-        })
+        }
     }
 
 
@@ -90,4 +83,9 @@ class FollowingFragment : Fragment(R.layout.fragment_follow) {
         }
     }
 
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

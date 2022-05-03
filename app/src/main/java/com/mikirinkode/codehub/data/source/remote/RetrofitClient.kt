@@ -1,12 +1,12 @@
 package com.mikirinkode.codehub.data.source.remote
 
+import com.mikirinkode.codehub.utils.Constants
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
-    private const val BASE_URL = "https://api.github.com/"
     private val retrofit = Retrofit.Builder()
-        .baseUrl(BASE_URL)
+        .baseUrl(Constants.BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 

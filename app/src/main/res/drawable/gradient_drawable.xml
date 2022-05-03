@@ -4,7 +4,7 @@
 
     <gradient
         android:endColor="?attr/backgroundTint"
-        android:startColor="?attr/colorSecondaryVariant"
+        android:startColor="?attr/colorPrimaryVariant"
         android:angle="90"
         android:dither="true"
         android:type="linear"/>

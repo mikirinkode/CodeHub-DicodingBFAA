@@ -3,7 +3,6 @@ package com.mikirinkode.codehub.ui.settings
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.preference.ListPreference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
 import androidx.preference.SwitchPreference
@@ -56,10 +55,5 @@ class PreferenceFragment : PreferenceFragmentCompat(),
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
-    }
-
-
-    companion object {
-        private const val DEFAULT_VALUE = "Not Set"
     }
 }

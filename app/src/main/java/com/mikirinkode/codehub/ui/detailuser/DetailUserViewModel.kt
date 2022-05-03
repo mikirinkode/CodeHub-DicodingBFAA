@@ -6,9 +6,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.mikirinkode.codehub.data.source.remote.RetrofitClient
-import com.mikirinkode.codehub.data.model.FavoriteUser
-import com.mikirinkode.codehub.data.source.local.FavoriteUserDao
-import com.mikirinkode.codehub.data.source.local.UserDatabase
+import com.mikirinkode.codehub.data.model.UserEntity
+import com.mikirinkode.codehub.data.source.local.CodehubDao
+import com.mikirinkode.codehub.data.source.local.CodehubDatabase
 import com.mikirinkode.codehub.data.source.remote.responses.DetailUserResponse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -21,11 +21,11 @@ class DetailUserViewModel(application: Application) : AndroidViewModel(applicati
 
     val user = MutableLiveData<DetailUserResponse>()
 
-    private var userDao: FavoriteUserDao?
-    private var userDb: UserDatabase? = UserDatabase.getDatabase(application)
+    private var userDao: CodehubDao?
+    private var codehubDb: CodehubDatabase? = CodehubDatabase.getDatabase(application)
 
     init{
-        userDao = userDb?.favoriteUserDao()
+        userDao = codehubDb?.favoriteUserDao()
     }
 
     private val _isLoading = MutableLiveData<Boolean>()
@@ -67,13 +67,13 @@ class DetailUserViewModel(application: Application) : AndroidViewModel(applicati
         return user
     }
 
-    fun addToFavorite(username: String, id: Int, avatar_url: String, user_html: String){
+    fun addToFavorite(username: String, id: Int, avatarUrl: String, htmlUrl: String){
         CoroutineScope(Dispatchers.IO).launch {
-            val user = FavoriteUser(
-                username,
+            val user = UserEntity(
                 id,
-                avatar_url,
-                user_html
+                username,
+                avatarUrl,
+                htmlUrl
             )
             userDao?.addToFavorite(user)
         }

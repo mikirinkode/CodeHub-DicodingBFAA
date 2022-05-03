@@ -4,17 +4,17 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.mikirinkode.codehub.data.source.remote.responses.UserResponse
+import com.mikirinkode.codehub.data.model.UserEntity
 import com.mikirinkode.codehub.databinding.ItemUserBinding
 
 class UsersAdapter : RecyclerView.Adapter<UsersAdapter.UserViewHolder>() {
 
-    private val list = ArrayList<UserResponse>()
+    private val list = ArrayList<UserEntity>()
     private var onItemClickCallback: OnItemClickCallback? = null
 
-    fun setList(userResponse: ArrayList<UserResponse>) {
+    fun setList(userEntity: List<UserEntity>) {
         list.clear()
-        list.addAll(userResponse)
+        list.addAll(userEntity)
         notifyDataSetChanged()
     }
 
@@ -25,15 +25,15 @@ class UsersAdapter : RecyclerView.Adapter<UsersAdapter.UserViewHolder>() {
     inner class UserViewHolder(private val binding: ItemUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(userResponse: UserResponse) {
+        fun bind(userEntity: UserEntity) {
             binding.apply {
                 root.setOnClickListener {
-                    onItemClickCallback?.onItemClicked(userResponse)
+                    onItemClickCallback?.onItemClicked(userEntity)
                 }
-                tvItemUsername.text = userResponse.username
-                tvItemUserUrl.text = userResponse.htmlUrl
+                tvItemUsername.text = userEntity.username
+                tvItemUserUrl.text = userEntity.htmlUrl
                 Glide.with(itemView)
-                    .load(userResponse.avatarUrl)
+                    .load(userEntity.avatarUrl)
                     .centerCrop()
                     .into(ivItemProfile)
             }
@@ -59,6 +59,6 @@ class UsersAdapter : RecyclerView.Adapter<UsersAdapter.UserViewHolder>() {
     }
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: UserResponse)
+        fun onItemClicked(data: UserEntity)
     }
 }

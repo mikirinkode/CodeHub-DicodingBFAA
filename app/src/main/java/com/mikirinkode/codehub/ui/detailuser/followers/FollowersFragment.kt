@@ -8,11 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mikirinkode.codehub.R
-import com.mikirinkode.codehub.data.source.remote.responses.UserResponse
+import com.mikirinkode.codehub.data.model.UserEntity
 import com.mikirinkode.codehub.databinding.FragmentFollowBinding
 import com.mikirinkode.codehub.ui.detailuser.DetailUserActivity
 import com.mikirinkode.codehub.ui.detailuser.UserFollowsAdapter
-import com.mikirinkode.codehub.ui.main.UsersAdapter
+import com.mikirinkode.codehub.utils.DataMapper
 
 
 class FollowersFragment : Fragment(R.layout.fragment_follow) {
@@ -27,9 +27,7 @@ class FollowersFragment : Fragment(R.layout.fragment_follow) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentFollowBinding.bind(view)
 
-        val args = arguments
         username = requireActivity().intent.getStringExtra(DetailUserActivity.EXTRA_USERNAME).toString()
-//        val numOfFollowers = args?.getInt(DetailUserActivity.EXTRA_FOLLOWERS)
         val numOfFollowers = requireActivity().intent.getIntExtra(DetailUserActivity.EXTRA_FOLLOWERS, 0)
 
         adapter = UserFollowsAdapter()
@@ -52,8 +50,8 @@ class FollowersFragment : Fragment(R.layout.fragment_follow) {
         )[FollowersViewModel::class.java]
         searchFollowers()
 
-        adapter.setOnItemClickCallback(object: UsersAdapter.OnItemClickCallback{
-            override fun onItemClicked(data: UserResponse) {
+        adapter.setOnItemClickCallback(object: UserFollowsAdapter.OnItemClickCallback{
+            override fun onItemClicked(data: UserEntity) {
                 Intent(requireContext(), DetailUserActivity::class.java).also {
                     it.putExtra(DetailUserActivity.EXTRA_USERNAME, data.username)
                     it.putExtra(DetailUserActivity.EXTRA_ID, data.id)
@@ -69,7 +67,7 @@ class FollowersFragment : Fragment(R.layout.fragment_follow) {
         viewModel.setListFollowers(username)
         viewModel.getListFollowers().observe(viewLifecycleOwner) {
             if (it != null) {
-                adapter.setList(it)
+                adapter.setList(DataMapper.mapResponsesToEntities(it))
                 showLoading(false)
             } else {
                 viewModel.setListFollowers(username)

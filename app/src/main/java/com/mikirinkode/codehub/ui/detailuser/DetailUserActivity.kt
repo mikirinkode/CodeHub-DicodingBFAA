@@ -1,21 +1,12 @@
 package com.mikirinkode.codehub.ui.detailuser
 
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
-import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
 import com.mikirinkode.codehub.R
 import com.mikirinkode.codehub.databinding.ActivityDetailUserBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class DetailUserActivity : AppCompatActivity() {
 
@@ -33,8 +24,7 @@ class DetailUserActivity : AppCompatActivity() {
 
         val bundle = Bundle()
         bundle.putString(EXTRA_USERNAME, username)
-//        bundle.putInt(DetailUserActivity.EXTRA_FOLLOWERS, it.followers)
-//        bundle.putInt(DetailUserActivity.EXTRA_FOLLOWING, it.following)
+        bundle.putInt(EXTRA_ID, id)
 
         binding.apply {
             val sectionsPagerAdapter = SectionsPagerAdapter(this@DetailUserActivity, bundle)

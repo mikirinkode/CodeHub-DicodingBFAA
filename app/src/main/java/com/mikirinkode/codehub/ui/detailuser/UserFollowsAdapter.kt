@@ -4,15 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.mikirinkode.codehub.data.source.remote.responses.UserResponse
+import com.mikirinkode.codehub.data.model.UserEntity
 import com.mikirinkode.codehub.databinding.ItemFollowerBinding
-import com.mikirinkode.codehub.ui.main.UsersAdapter
 
 class UserFollowsAdapter : RecyclerView.Adapter<UserFollowsAdapter.UserViewHolder>() {
-    private val list = ArrayList<UserResponse>()
-    private var onItemClickCallback: UsersAdapter.OnItemClickCallback? = null
+    private val list = ArrayList<UserEntity>()
+    private var onItemClickCallback: OnItemClickCallback? = null
 
-    fun setList(users: ArrayList<UserResponse>) {
+    fun setList(users: List<UserEntity>) {
         list.clear()
         list.addAll(users)
         notifyDataSetChanged()
@@ -20,7 +19,7 @@ class UserFollowsAdapter : RecyclerView.Adapter<UserFollowsAdapter.UserViewHolde
 
     inner class UserViewHolder(private val binding: ItemFollowerBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(user: UserResponse) {
+        fun bind(user: UserEntity) {
 
             binding.apply {
                 Glide.with(itemView)
@@ -49,12 +48,12 @@ class UserFollowsAdapter : RecyclerView.Adapter<UserFollowsAdapter.UserViewHolde
 
     override fun getItemCount(): Int = list.size
 
-    fun setOnItemClickCallback(onItemClickCallback: UsersAdapter.OnItemClickCallback) {
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
 
         this.onItemClickCallback = onItemClickCallback
     }
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: UserResponse)
+        fun onItemClicked(data: UserEntity)
     }
 }

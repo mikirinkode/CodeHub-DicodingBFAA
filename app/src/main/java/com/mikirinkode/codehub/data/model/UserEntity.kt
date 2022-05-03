@@ -4,12 +4,12 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.io.Serializable
 
-@Entity(tableName = "favorite_user")
-data class FavoriteUser(
-    val login: String,
+@Entity(tableName = "user_entity")
+data class UserEntity(
     @PrimaryKey
     val id: Int,
-    val avatar_url: String,
-    val user_html: String
+    val username: String,
+    val avatarUrl: String,
+    val htmlUrl: String
 
 ):Serializable

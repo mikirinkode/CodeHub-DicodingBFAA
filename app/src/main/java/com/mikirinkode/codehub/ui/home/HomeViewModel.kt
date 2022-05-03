@@ -1,4 +1,4 @@
-package com.mikirinkode.codehub.ui.main
+package com.mikirinkode.codehub.ui.home
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -10,7 +10,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class UsersViewModel : ViewModel(){
+class HomeViewModel : ViewModel(){
 
     private val listUsers = MutableLiveData<ArrayList<UserResponse>>()
 

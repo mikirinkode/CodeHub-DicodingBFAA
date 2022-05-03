@@ -8,18 +8,18 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.mikirinkode.codehub.data.source.remote.responses.UserResponse
+import com.mikirinkode.codehub.data.model.UserEntity
 import com.mikirinkode.codehub.databinding.FragmentHomeBinding
 import com.mikirinkode.codehub.ui.detailuser.DetailUserActivity
 import com.mikirinkode.codehub.ui.main.UsersAdapter
-import com.mikirinkode.codehub.ui.main.UsersViewModel
 import com.mikirinkode.codehub.ui.search.SearchActivity
+import com.mikirinkode.codehub.utils.DataMapper
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private lateinit var usersViewModel: UsersViewModel
+    private lateinit var homeViewModel: HomeViewModel
     private lateinit var usersAdapter: UsersAdapter
 
     override fun onCreateView(
@@ -33,10 +33,10 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         usersAdapter = UsersAdapter()
-        usersViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[UsersViewModel::class.java]
+        homeViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[HomeViewModel::class.java]
 
         usersAdapter.setOnItemClickCallback(object: UsersAdapter.OnItemClickCallback {
-            override fun onItemClicked(data: UserResponse) {
+            override fun onItemClicked(data: UserEntity) {
                 Intent(requireContext(), DetailUserActivity::class.java).also {
                     it.putExtra(DetailUserActivity.EXTRA_USERNAME, data.username)
                     it.putExtra(DetailUserActivity.EXTRA_ID, data.id)
@@ -58,17 +58,17 @@ class HomeFragment : Fragment() {
             }
         }
 
-        usersViewModel.isLoading.observe(requireActivity()) {
+        homeViewModel.isLoading.observe(requireActivity()) {
             showLoading(it)
         }
-        usersViewModel.onFailure.observe(requireActivity()) {
+        homeViewModel.onFailure.observe(requireActivity()) {
             onFailure(it)
         }
 
-        usersViewModel.getListUsers().observe(requireActivity()) {
+        homeViewModel.getListUsers().observe(requireActivity()) {
             if (it != null) {
                 onFailure(false)
-                usersAdapter.setList(it)
+                usersAdapter.setList(DataMapper.mapResponsesToEntities(it))
             }
         }
         refreshApp()
@@ -77,7 +77,7 @@ class HomeFragment : Fragment() {
     private fun refreshApp() {
         binding.apply {
             swipeToRefresh.setOnRefreshListener {
-                usersViewModel.findUsers()
+                homeViewModel.findUsers()
                 swipeToRefresh.isRefreshing = false
             }
         }

@@ -11,10 +11,11 @@ import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mikirinkode.codehub.R
-import com.mikirinkode.codehub.data.source.remote.responses.UserResponse
+import com.mikirinkode.codehub.data.model.UserEntity
 import com.mikirinkode.codehub.databinding.ActivitySearchBinding
 import com.mikirinkode.codehub.ui.detailuser.DetailUserActivity
 import com.mikirinkode.codehub.ui.main.UsersAdapter
+import com.mikirinkode.codehub.utils.DataMapper
 
 class SearchActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySearchBinding
@@ -53,7 +54,7 @@ class SearchActivity : AppCompatActivity() {
         }
 
         searchResultAdapter.setOnItemClickCallback(object : UsersAdapter.OnItemClickCallback {
-            override fun onItemClicked(data: UserResponse) {
+            override fun onItemClicked(data: UserEntity) {
                 Intent(this@SearchActivity, DetailUserActivity::class.java).also {
                     it.putExtra(DetailUserActivity.EXTRA_USERNAME, data.username)
                     it.putExtra(DetailUserActivity.EXTRA_ID, data.id)
@@ -67,7 +68,7 @@ class SearchActivity : AppCompatActivity() {
 
         searchResultViewModel.getSearchUsers().observe(this) {
             if (it != null) {
-                searchResultAdapter.setList(it)
+                searchResultAdapter.setList(DataMapper.mapResponsesToEntities(it))
             }
         }
         refreshApp()

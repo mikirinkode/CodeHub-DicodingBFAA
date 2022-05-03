@@ -1,8 +1,6 @@
 package com.mikirinkode.codehub.ui.main
 
-import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.navigation.findNavController
@@ -12,7 +10,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.mikirinkode.codehub.R
 import com.mikirinkode.codehub.databinding.ActivityMainBinding
-import com.mikirinkode.codehub.ui.search.SearchActivity
 
 
 class MainActivity : AppCompatActivity(){
@@ -34,8 +31,7 @@ class MainActivity : AppCompatActivity(){
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_home,
-                R.id.nav_favorite,
-                R.id.nav_settings
+                R.id.nav_favorite
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
