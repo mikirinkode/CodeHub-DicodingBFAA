@@ -7,7 +7,7 @@ import androidx.room.Query
 import com.mikirinkode.codehub.data.model.UserEntity
 
 @Dao
-interface CodehubDao {
+interface CodeHubDao {
     @Insert
     suspend fun addToFavorite(userEntity: UserEntity)
 

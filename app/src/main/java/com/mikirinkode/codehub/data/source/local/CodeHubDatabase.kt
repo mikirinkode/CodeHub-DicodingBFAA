@@ -10,19 +10,19 @@ import com.mikirinkode.codehub.data.model.UserEntity
     entities = [UserEntity::class],
     version = 1
 )
-abstract class CodehubDatabase: RoomDatabase(){
+abstract class CodeHubDatabase: RoomDatabase(){
     companion object {
-        private var INSTANCE : CodehubDatabase? = null
+        private var INSTANCE : CodeHubDatabase? = null
 
-        fun getDatabase(context: Context): CodehubDatabase?{
+        fun getDatabase(context: Context): CodeHubDatabase?{
             if(INSTANCE == null){
-                synchronized(CodehubDatabase::class){
-                    INSTANCE = Room.databaseBuilder(context.applicationContext, CodehubDatabase::class.java, "codehub_db").build()
+                synchronized(CodeHubDatabase::class){
+                    INSTANCE = Room.databaseBuilder(context.applicationContext, CodeHubDatabase::class.java, "mk_codehub_db").build()
                 }
             }
             return INSTANCE
         }
     }
 
-    abstract fun favoriteUserDao(): CodehubDao
+    abstract fun favoriteUserDao(): CodeHubDao
 }

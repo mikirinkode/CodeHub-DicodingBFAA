@@ -4,19 +4,19 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.mikirinkode.codehub.data.model.UserEntity
-import com.mikirinkode.codehub.data.source.local.CodehubDao
-import com.mikirinkode.codehub.data.source.local.CodehubDatabase
+import com.mikirinkode.codehub.data.source.local.CodeHubDao
+import com.mikirinkode.codehub.data.source.local.CodeHubDatabase
 
 class FavoriteViewModel(application: Application): AndroidViewModel(application) {
-    private var userDao: CodehubDao?
-    private var codehubDb: CodehubDatabase? = CodehubDatabase.getDatabase(application)
+    private var dao: CodeHubDao?
+    private var database: CodeHubDatabase? = CodeHubDatabase.getDatabase(application)
 
     init{
-        userDao = codehubDb?.favoriteUserDao()
+        dao = database?.favoriteUserDao()
     }
 
     fun getFavoriteUser():LiveData<List<UserEntity>>?{
-        return userDao?.getFavoriteUser()
+        return dao?.getFavoriteUser()
     }
 
     

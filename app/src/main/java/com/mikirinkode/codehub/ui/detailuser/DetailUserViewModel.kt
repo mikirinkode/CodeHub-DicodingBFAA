@@ -7,8 +7,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.mikirinkode.codehub.data.source.remote.RetrofitClient
 import com.mikirinkode.codehub.data.model.UserEntity
-import com.mikirinkode.codehub.data.source.local.CodehubDao
-import com.mikirinkode.codehub.data.source.local.CodehubDatabase
+import com.mikirinkode.codehub.data.source.local.CodeHubDao
+import com.mikirinkode.codehub.data.source.local.CodeHubDatabase
 import com.mikirinkode.codehub.data.source.remote.responses.DetailUserResponse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -21,11 +21,11 @@ class DetailUserViewModel(application: Application) : AndroidViewModel(applicati
 
     val user = MutableLiveData<DetailUserResponse>()
 
-    private var userDao: CodehubDao?
-    private var codehubDb: CodehubDatabase? = CodehubDatabase.getDatabase(application)
+    private var dao: CodeHubDao?
+    private var database: CodeHubDatabase? = CodeHubDatabase.getDatabase(application)
 
     init{
-        userDao = codehubDb?.favoriteUserDao()
+        dao = database?.favoriteUserDao()
     }
 
     private val _isLoading = MutableLiveData<Boolean>()
@@ -75,15 +75,15 @@ class DetailUserViewModel(application: Application) : AndroidViewModel(applicati
                 avatarUrl,
                 htmlUrl
             )
-            userDao?.addToFavorite(user)
+            dao?.addToFavorite(user)
         }
     }
 
-    suspend fun checkUser(id: Int) = userDao?.checkUser(id)
+    suspend fun checkUser(id: Int) = dao?.checkUser(id)
 
     fun removeFromFavorite(id: Int){
         CoroutineScope(Dispatchers.IO).launch {
-            userDao?.removeFromFavorite(id)
+            dao?.removeFromFavorite(id)
         }
     }
 }
