@@ -9,7 +9,8 @@ you need to update github token in Constatns.kt class at com.mikirinkode.codehub
 class Constants {
     companion object {
         const val GITHUB_TOKEN = "put_your_github_token_here"
-        const val BASE_URL = "https://api.github.com/"
+        
+        ...
     }
 }
 ```
@@ -30,7 +31,7 @@ android {
     ...
     
     defaultConfig {
-          .....
+          ...
 
 //        Properties properties = new Properties()
 //        properties.load(project.rootProject.file('local.properties').newDataInputStream())
